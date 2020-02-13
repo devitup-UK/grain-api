@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DevItUp.Grain.API.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using API.Entities;
 
-namespace API.Helpers
+namespace DevItUp.Grain.API.Helpers
 {
     public class DataContext : DbContext
     {

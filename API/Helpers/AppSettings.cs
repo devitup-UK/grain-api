@@ -1,4 +1,4 @@
-﻿namespace API.Helpers
+﻿namespace DevItUp.Grain.API.Helpers
 {
     public class AppSettings
     {

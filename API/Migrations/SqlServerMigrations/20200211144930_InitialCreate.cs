@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace API.Migrations.SqlServerMigrations
+namespace DevItUp.Grain.API.Migrations.SqlServerMigrations
 {
     public partial class InitialCreate : Migration
     {

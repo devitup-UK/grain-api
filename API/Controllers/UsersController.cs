@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
-using System.IdentityModel.Tokens.Jwt;
-using API.Helpers;
-using Microsoft.Extensions.Options;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
+﻿using AutoMapper;
+using DevItUp.Grain.API.Entities;
+using DevItUp.Grain.API.Helpers;
+using DevItUp.Grain.API.Models.Users;
+using DevItUp.Grain.API.Services;
 using Microsoft.AspNetCore.Authorization;
-using API.Services;
-using API.Entities;
-using API.Models.Users;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using System.Security.Claims;
 
-namespace API.Controllers
+namespace DevItUp.Grain.API.Controllers
 {
     [Authorize]
     [ApiController]

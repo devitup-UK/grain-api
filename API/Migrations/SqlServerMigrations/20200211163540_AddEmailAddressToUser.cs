@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace API.Migrations.SqlServerMigrations
+namespace DevItUp.Grain.API.Migrations.SqlServerMigrations
 {
     public partial class AddEmailAddressToUser : Migration
     {

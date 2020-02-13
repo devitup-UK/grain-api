@@ -1,19 +1,19 @@
+using AutoMapper;
+using DevItUp.Grain.API.Helpers;
+using DevItUp.Grain.API.Services;
+using System;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
-using API.Helpers;
-using API.Services;
-using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System;
 
-namespace API
+namespace DevItUp.Grain.API
 {
     public class Startup
     {

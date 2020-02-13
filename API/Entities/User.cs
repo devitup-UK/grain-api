@@ -1,4 +1,4 @@
-﻿namespace API.Entities
+﻿namespace DevItUp.Grain.API.Entities
 {
     public class User
     {

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using API.Entities;
-using API.Models.Users;
+using DevItUp.Grain.API.Entities;
+using DevItUp.Grain.API.Models.Users;
 
-namespace API.Helpers
+namespace DevItUp.Grain.API.Helpers
 {
     public class AutoMapperProfile : Profile
     {

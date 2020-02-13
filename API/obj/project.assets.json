@@ -5755,29 +5755,36 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.1",
       "Microsoft.EntityFrameworkCore >= 3.1.1",
       "Microsoft.EntityFrameworkCore.Design >= 3.1.1",
+      "Microsoft.EntityFrameworkCore.Relational >= 3.1.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.1",
       "System.IdentityModel.Tokens.Jwt >= 5.6.0"
     ]
   },
   "packageFolders": {
-    "/Users/tom/.nuget/packages/": {}
+    "C:\\Users\\thomas.alderson\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/tom/Development/Grain/API/API/API.csproj",
+      "projectUniqueName": "C:\\Users\\thomas.alderson\\GitHub\\DevItUp\\grain-api\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "/Users/tom/Development/Grain/API/API/API.csproj",
-      "packagesPath": "/Users/tom/.nuget/packages/",
-      "outputPath": "/Users/tom/Development/Grain/API/API/obj/",
+      "projectPath": "C:\\Users\\thomas.alderson\\GitHub\\DevItUp\\grain-api\\API\\API.csproj",
+      "packagesPath": "C:\\Users\\thomas.alderson\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\thomas.alderson\\GitHub\\DevItUp\\grain-api\\API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "/Users/tom/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\thomas.alderson\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5816,6 +5823,10 @@
             "target": "Package",
             "version": "[3.1.1, )"
           },
+          "Microsoft.EntityFrameworkCore.Relational": {
+            "target": "Package",
+            "version": "[3.1.1, )"
+          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[3.1.1, )"
@@ -5843,7 +5854,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using DevItUp.Grain.API.Entities;
+using DevItUp.Grain.API.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using API.Entities;
-using API.Helpers;
 
-namespace API.Services
+namespace DevItUp.Grain.API.Services
 {
     public interface IUserService
     {

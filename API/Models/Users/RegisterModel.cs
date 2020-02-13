@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace API.Models.Users
+namespace DevItUp.Grain.API.Models.Users
 {
     public class RegisterModel
     {

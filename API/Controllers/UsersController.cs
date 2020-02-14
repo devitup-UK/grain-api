@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Security.Claims;
+using DevItUp.Grain.API.Interfaces;
+using DevItUp.Grain.API.Models.Users.Responses;
 
 namespace DevItUp.Grain.API.Controllers
 {
@@ -79,8 +81,12 @@ namespace DevItUp.Grain.API.Controllers
             try
             {
                 // create user
-                _userService.Create(user, model.Password);
-                return Ok();
+                CreateResponse createResponse = _userService.Create(model);
+                if(createResponse.User == null)
+                {
+                    return BadRequest(createResponse.Error);
+                }
+                return Ok(new { id = createResponse.User.Id });
             }
             catch (AppException ex)
             {

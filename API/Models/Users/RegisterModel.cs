@@ -17,6 +17,9 @@ namespace DevItUp.Grain.API.Models.Users
         public string Password { get; set; }
 
         [Required]
+        public string ConfirmPassword { get; set; }
+
+        [Required]
         public string EmailAddress { get; set; }
     }
 }

@@ -1,21 +1,14 @@
 ﻿using DevItUp.Grain.API.Entities;
 using DevItUp.Grain.API.Helpers;
+using DevItUp.Grain.API.Interfaces;
+using DevItUp.Grain.API.Models.Users;
+using DevItUp.Grain.API.Models.Users.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace DevItUp.Grain.API.Services
 {
-    public interface IUserService
-    {
-        User Authenticate(string username, string password);
-        IEnumerable<User> GetAll();
-        User GetById(int id);
-        User Create(User user, string password);
-        void Update(User user, string password = null);
-        void Delete(int id);
-    }
-
     public class UserService : IUserService
     {
         private readonly DataContext _context;
@@ -37,7 +30,7 @@ namespace DevItUp.Grain.API.Services
                 return null;
 
             // check if password is correct
-            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            if (!PasswordManagement.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
                 return null;
 
             // authentication successful
@@ -54,24 +47,43 @@ namespace DevItUp.Grain.API.Services
             return _context.Users.Find(id);
         }
 
-        public User Create(User user, string password)
+        public CreateResponse Create(RegisterModel registerModel)
         {
+            CreateResponse response = new CreateResponse();
+
             // validation
-            if (string.IsNullOrWhiteSpace(password))
-                throw new AppException("Password is required");
+            if (string.IsNullOrWhiteSpace(registerModel.Password))
+            {
+                response.Error = new Error(1, "Password was not supplied.");
+                return response;
+            }
 
-            if (_context.Users.Any(x => x.Username == user.Username))
-                throw new AppException("Username \"" + user.Username + "\" is already taken");
+            if (_context.Users.Any(x => x.Username == registerModel.Username))
+            {
+                response.Error = new Error(2, "That username is taken.");
+                return response;
+            }
 
-            CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+            if(registerModel.Password != registerModel.ConfirmPassword)
+            {
+                response.Error = new Error(3, "Password and ConfirmPassword did not match.");
+                return response;
+            }
 
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
+            response.User = new User();
+            response.User.FirstName = registerModel.FirstName;
+            response.User.LastName = registerModel.LastName;
+            response.User.Username = registerModel.Username;
 
-            _context.Users.Add(user);
+            PasswordManagement.CreatePasswordHash(registerModel.Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+            response.User.PasswordHash = passwordHash;
+            response.User.PasswordSalt = passwordSalt;
+
+            _context.Users.Add(response.User);
             _context.SaveChanges();
 
-            return user;
+            return response;
         }
 
         public void Update(User userParam, string password = null)
@@ -101,7 +113,7 @@ namespace DevItUp.Grain.API.Services
             // update password if provided
             if (!string.IsNullOrWhiteSpace(password))
             {
-                CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+                PasswordManagement.CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
 
                 user.PasswordHash = passwordHash;
                 user.PasswordSalt = passwordSalt;
@@ -119,37 +131,6 @@ namespace DevItUp.Grain.API.Services
                 _context.Users.Remove(user);
                 _context.SaveChanges();
             }
-        }
-
-        // private helper methods
-
-        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
-        {
-            if (password == null) throw new ArgumentNullException("password");
-            if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
-
-            using var hmac = new System.Security.Cryptography.HMACSHA512();
-            passwordSalt = hmac.Key;
-            passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-        }
-
-        private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
-        {
-            if (password == null) throw new ArgumentNullException("password");
-            if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
-            if (storedHash.Length != 64) throw new ArgumentException("Invalid length of password hash (64 bytes expected).", "passwordHash");
-            if (storedSalt.Length != 128) throw new ArgumentException("Invalid length of password salt (128 bytes expected).", "passwordHash");
-
-            using (var hmac = new System.Security.Cryptography.HMACSHA512(storedSalt))
-            {
-                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-                for (int i = 0; i < computedHash.Length; i++)
-                {
-                    if (computedHash[i] != storedHash[i]) return false;
-                }
-            }
-
-            return true;
         }
     }
 }

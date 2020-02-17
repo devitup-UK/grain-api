@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Specification.Authentication
+namespace Specification.ControllerTests.UsersController
 {
     using TechTalk.SpecFlow;
     using System;
@@ -74,6 +74,15 @@ namespace Specification.Authentication
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 6
+ #line hidden
+#line 7
+ testRunner.Given("I have created the endpoint \"/users/register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+        }
+        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Allow an anonymous user to join the system as a registered user.")]
         [NUnit.Framework.CategoryAttribute("authentication")]
@@ -93,7 +102,7 @@ namespace Specification.Authentication
             }
             string[] tagsOfScenario = @__tags;
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Allow an anonymous user to join the system as a registered user.", null, @__tags);
-#line 7
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -113,46 +122,46 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given("I have created the endpoint \"/users/register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
- testRunner.And("I have prepared a \"POST\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 10
- testRunner.And("the prepared request has a RegisterModel parameter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 6
+ this.FeatureBackground();
 #line hidden
 #line 11
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"FirstName\" parameter whose value is \"" +
-                            "{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have prepared a \"POST\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 12
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"LastName\" parameter whose value is \"{" +
-                            "0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the prepared request has a RegisterModel parameter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"Username\" parameter whose value is \"{" +
-                            "0}\"", username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"FirstName\" parameter w" +
+                            "hose value is \"{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"EmailAddress\" parameter whose value i" +
-                            "s \"{0}\"", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"LastName\" parameter wh" +
+                            "ose value is \"{0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"Password\" parameter whose value is \"{" +
-                            "0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"Username\" parameter wh" +
+                            "ose value is \"{0}\"", username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"ConfirmPassword\" parameter whose valu" +
-                            "e is \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"EmailAddress\" paramete" +
+                            "r whose value is \"{0}\"", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.When("I submit the prepared request to \"/users/register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"Password\" parameter wh" +
+                            "ose value is \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 18
- testRunner.Then("the endpoint will return a status code of \"200\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"ConfirmPassword\" param" +
+                            "eter whose value is \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 19
+ testRunner.When("I submit the prepared request to \"/users/register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 20
+ testRunner.Then("the endpoint will return a status code of \"200\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 21
  testRunner.And(string.Format("the endpoint will return a body of \'{{\"id\":{0}}}\'", iD), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -179,7 +188,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = @__tags;
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Disallow a user to join the system when an existing user already exists with a sp" +
                     "ecific username.", null, @__tags);
-#line 27
+#line 29
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -199,50 +208,50 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 28
- testRunner.Given("I have created the endpoint \"/users/register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 29
- testRunner.And(string.Format("I have registered a user with the details (FirstName: \"{0}\", LastName: \"{1}\", Use" +
-                            "rname: \"{2}\", Email Address: \"{3}\", Password: \"{4}\", ConfirmPassword: \"{4}\")", firstName, lastName, username, emailAddress, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 6
+ this.FeatureBackground();
 #line hidden
 #line 30
- testRunner.And("I have prepared a \"POST\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I have registered a user with the details (FirstName: \"{0}\", LastName: \"{1}\", Use" +
+                            "rname: \"{2}\", Email Address: \"{3}\", Password: \"{4}\", ConfirmPassword: \"{4}\")", firstName, lastName, username, emailAddress, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 31
- testRunner.And("the prepared request has a RegisterModel parameter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have prepared a \"POST\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 32
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"FirstName\" parameter whose value is \"" +
-                            "{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the prepared request has a RegisterModel parameter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 33
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"LastName\" parameter whose value is \"{" +
-                            "0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"FirstName\" parameter w" +
+                            "hose value is \"{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 34
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"Username\" parameter whose value is \"{" +
-                            "0}\"", username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"LastName\" parameter wh" +
+                            "ose value is \"{0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 35
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"EmailAddress\" parameter whose value i" +
-                            "s \"{0}\"", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"Username\" parameter wh" +
+                            "ose value is \"{0}\"", username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 36
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"Password\" parameter whose value is \"{" +
-                            "0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"EmailAddress\" paramete" +
+                            "r whose value is \"{0}\"", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 37
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"ConfirmPassword\" parameter whose valu" +
-                            "e is \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"Password\" parameter wh" +
+                            "ose value is \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 38
- testRunner.When("I submit the prepared request to \"/users/register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"ConfirmPassword\" param" +
+                            "eter whose value is \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 39
- testRunner.Then("the endpoint will return a status code of \"400\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I submit the prepared request to \"/users/register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 40
+ testRunner.Then("the endpoint will return a status code of \"400\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 41
  testRunner.And("the endpoint will return a body of \'{\"Code\":2,\"Message\":\"That username is taken.\"" +
                         "}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -270,7 +279,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = @__tags;
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Disallow a user to join the system when submitting Password and ConfirmPassword d" +
                     "o not match.", null, @__tags);
-#line 47
+#line 48
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -290,38 +299,38 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 48
- testRunner.Given("I have created the endpoint \"/users/register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
+ this.FeatureBackground();
 #line hidden
 #line 49
- testRunner.And("I have prepared a \"POST\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have prepared a \"POST\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 50
  testRunner.And("the prepared request has a RegisterModel parameter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 51
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"FirstName\" parameter whose value is \"" +
-                            "{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"FirstName\" parameter w" +
+                            "hose value is \"{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 52
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"LastName\" parameter whose value is \"{" +
-                            "0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"LastName\" parameter wh" +
+                            "ose value is \"{0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 53
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"Username\" parameter whose value is \"{" +
-                            "0}\"", username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"Username\" parameter wh" +
+                            "ose value is \"{0}\"", username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 54
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"EmailAddress\" parameter whose value i" +
-                            "s \"{0}\"", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"EmailAddress\" paramete" +
+                            "r whose value is \"{0}\"", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 55
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"Password\" parameter whose value is \"{" +
-                            "0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"Password\" parameter wh" +
+                            "ose value is \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 56
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"ConfirmPassword\" parameter whose valu" +
-                            "e is \"{0}\"", confirmPassword), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"ConfirmPassword\" param" +
+                            "eter whose value is \"{0}\"", confirmPassword), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 57
  testRunner.When("I submit the prepared request to \"/users/register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -375,27 +384,27 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 6
+ this.FeatureBackground();
+#line hidden
 #line 67
- testRunner.Given("I have created the endpoint \"/users/register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have prepared a \"POST\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 68
- testRunner.And("I have prepared a \"POST\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 69
  testRunner.And("the prepared request has a RegisterModel parameter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 69
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"FirstName\" parameter w" +
+                            "hose value is \"{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 70
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"FirstName\" parameter whose value is \"" +
-                            "{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the prepared RegisterModel parameter in the request has a \"LastName\" parameter wh" +
+                            "ose value is \"{0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 71
- testRunner.And(string.Format("the prepared RegisterModel parameter has a \"LastName\" parameter whose value is \"{" +
-                            "0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 72
  testRunner.When("I submit the prepared request to \"/users/register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 73
+#line 72
  testRunner.Then("the endpoint will return a status code of \"400\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

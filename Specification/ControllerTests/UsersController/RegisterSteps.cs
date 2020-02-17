@@ -26,11 +26,18 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace Grain.API.Specification.Authentication
+namespace DevItUp.Grain.API.Specification.ControllerTests.UsersController
 {
     [Binding]
     class RegisterSteps
     {
+        private readonly UserContext _userContext;
+
+        public RegisterSteps(UserContext userContext)
+        {
+            _userContext = userContext;
+        }
+
         [Given(@"I have created the endpoint ""(.*)""")]
         public void GivenIHaveCreatedTheEndpoint(string endpointRelativeUrl)
         {
@@ -41,14 +48,14 @@ namespace Grain.API.Specification.Authentication
                     IOptions<AppSettings> someOptions = Options.Create<AppSettings>(new AppSettings());
 
                     // Setup the user mock.
-                    ScenarioProperties.Mock_UsersService = new MockUserService();
+                    _userContext.Mock_UsersService = new MockUserService();
 
                     // Setup the mapper.
-                    ScenarioProperties.Mock_Mapper = MappingProfile.InitializeAutoMapper().CreateMapper();
+                    _userContext.Mock_Mapper = MappingProfile.InitializeAutoMapper().CreateMapper();
 
                     // Initialise the controller.
-                    ScenarioProperties.Controller_Users = new UsersController(ScenarioProperties.Mock_UsersService,
-                        ScenarioProperties.Mock_Mapper,
+                    _userContext.Controller_Users = new Controllers.UsersController(_userContext.Mock_UsersService,
+                        _userContext.Mock_Mapper,
                         someOptions);
 
 
@@ -62,24 +69,22 @@ namespace Grain.API.Specification.Authentication
         [Given(@"I have prepared a ""(.*)"" request")]
         public void GivenIHavePreparedARequest(string requestType)
         {
-            ScenarioProperties.Register_RequestData = new DevItUp.Grain.API.Specification.Model.RegisterRequestData();
-            ScenarioProperties.Register_RequestData.RequestType = requestType;
+            _userContext.Register_RequestData = new Model.RegisterRequestData();
+            _userContext.Register_RequestData.RequestType = requestType;
         }
 
         [Given(@"the prepared request has a RegisterModel parameter")]
         public void GivenThePreparedRequestHasARegisterModelParameter()
         {
-            ScenarioProperties.Register_RequestData.RequestObject = new RegisterModel();
+            _userContext.Register_RequestData.RequestObject = new RegisterModel();
         }
 
-        [Given(@"the prepared RegisterModel parameter has a ""(.*)"" parameter whose value is ""(.*)""")]
-        public void GivenThePreparedRegisterModelParameterHasAParameterWhoseValueIs(string parameterName, string parameterValue)
+        [Given(@"the prepared RegisterModel parameter in the request has a ""(.*)"" parameter whose value is ""(.*)""")]
+        public void GivenThePreparedRegisterModelParameterInTheRequestHasAParameterWhoseValueIs(string parameterName, string parameterValue)
         {
-            Type registerModel = typeof(RegisterModel);
-            PropertyInfo myPropInfo = registerModel.GetProperty(parameterName);
-            myPropInfo.SetValue(ScenarioProperties.Register_RequestData.RequestObject, parameterValue, null);
-            
+            PropertyHelper.SetProperty(_userContext.Register_RequestData.RequestObject, parameterName, parameterValue);
         }
+
 
         [When(@"I submit the prepared request to ""(.*)""")]
         public void WhenISubmitThePreparedRequestTo(string endpointRelativeUrl)
@@ -87,13 +92,13 @@ namespace Grain.API.Specification.Authentication
             IActionResult theEndpointResponse = null;
 
             // Throw an error if the request data hasn't been prepared.
-            if (ScenarioProperties.Register_RequestData == null)
+            if (_userContext.Register_RequestData == null)
             {
                 throw new ArgumentNullException("Register_RequestData");
             }
 
             // Error if the HTTP method hasn't been set.
-            if (String.IsNullOrEmpty(ScenarioProperties.Register_RequestData.RequestType))
+            if (String.IsNullOrEmpty(_userContext.Register_RequestData.RequestType))
             {
                 throw new ArgumentOutOfRangeException("httpMethod");
             }
@@ -101,10 +106,10 @@ namespace Grain.API.Specification.Authentication
             switch (endpointRelativeUrl)
             {
                 case "/users/register":
-                    if(ScenarioProperties.Register_RequestData.RequestType.Equals("POST"))
+                    if(_userContext.Register_RequestData.RequestType.Equals("POST"))
                     {
-                        ControllerHelper.SimulateValidation(ScenarioProperties.Register_RequestData.RequestObject, ScenarioProperties.Controller_Users);
-                        theEndpointResponse = ScenarioProperties.Controller_Users.Register(ScenarioProperties.Register_RequestData.RequestObject);
+                        ControllerHelper.SimulateValidation(_userContext.Register_RequestData.RequestObject, _userContext.Controller_Users);
+                        theEndpointResponse = _userContext.Controller_Users.Register(_userContext.Register_RequestData.RequestObject);
                     }
                     break;
                 default:
@@ -113,7 +118,7 @@ namespace Grain.API.Specification.Authentication
 
             if (theEndpointResponse != null)
             {
-                ScenarioProperties.TheEndpointResponse = theEndpointResponse;
+                _userContext.TheEndpointResponse = theEndpointResponse;
             }
         }
 
@@ -124,9 +129,9 @@ namespace Grain.API.Specification.Authentication
 
             try
             {
-                status = ScenarioProperties.TheEndpointResponse?.GetType().GetProperty("StatusCode")?.GetValue(ScenarioProperties.TheEndpointResponse);
+                status = _userContext.TheEndpointResponse?.GetType().GetProperty("StatusCode")?.GetValue(_userContext.TheEndpointResponse);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new ArgumentOutOfRangeException("statusCode", "The returned ActionResult did not have a Status Code.");
             }
@@ -140,7 +145,7 @@ namespace Grain.API.Specification.Authentication
         [Then(@"the endpoint will return a body of '(.*)'")]
         public void ThenTheEndpointWillReturnABodyOf(string expectedResponse)
         {
-            var responseData = ScenarioProperties.TheEndpointResponse.GetType().GetProperty("Value")?.GetValue(ScenarioProperties.TheEndpointResponse);
+            var responseData = _userContext.TheEndpointResponse.GetType().GetProperty("Value")?.GetValue(_userContext.TheEndpointResponse);
             Assert.AreEqual(expectedResponse, JsonConvert.SerializeObject(responseData));
         }
 
@@ -149,11 +154,11 @@ namespace Grain.API.Specification.Authentication
         {
             GivenIHavePreparedARequest("POST");
             GivenThePreparedRequestHasARegisterModelParameter();
-            GivenThePreparedRegisterModelParameterHasAParameterWhoseValueIs("FirstName", firstName);
-            GivenThePreparedRegisterModelParameterHasAParameterWhoseValueIs("LastName", lastName);
-            GivenThePreparedRegisterModelParameterHasAParameterWhoseValueIs("Username", username);
-            GivenThePreparedRegisterModelParameterHasAParameterWhoseValueIs("EmailAddress", emailAddress);
-            GivenThePreparedRegisterModelParameterHasAParameterWhoseValueIs("Password", password);
+            GivenThePreparedRegisterModelParameterInTheRequestHasAParameterWhoseValueIs("FirstName", firstName);
+            GivenThePreparedRegisterModelParameterInTheRequestHasAParameterWhoseValueIs("LastName", lastName);
+            GivenThePreparedRegisterModelParameterInTheRequestHasAParameterWhoseValueIs("Username", username);
+            GivenThePreparedRegisterModelParameterInTheRequestHasAParameterWhoseValueIs("EmailAddress", emailAddress);
+            GivenThePreparedRegisterModelParameterInTheRequestHasAParameterWhoseValueIs("Password", password);
             WhenISubmitThePreparedRequestTo("/users/register");
         }
 

@@ -1,5 +1,5 @@
 language: csharp
-mono: latest
+mono: none
 dotnet: 3.1.1
 solution: API.sln
 install:
@@ -7,4 +7,4 @@ install:
   - nuget install NUnit.Console -Version 3.11.1 -OutputDirectory testrunner
 script:
   - msbuild /p:Configuration=Release API.sln
-  - mono ./testrunner/NUnit.ConsoleRunner.3.11.1/tools/nunit3-console.exe ./Specification/bin/Release/netcoreapp3.1/Specification.dll
+  - dotnet test ./Specification/bin/Release/netcoreapp3.1/Specification.dll

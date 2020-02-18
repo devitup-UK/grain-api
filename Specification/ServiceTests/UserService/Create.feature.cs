@@ -88,16 +88,19 @@ namespace Specification.ServiceTests.UserService
         [NUnit.Framework.CategoryAttribute("authentication")]
         [NUnit.Framework.CategoryAttribute("service")]
         [NUnit.Framework.CategoryAttribute("positive")]
+        [NUnit.Framework.CategoryAttribute("ignore")]
         public virtual void CreateAValidUserOnTheDatabase_()
         {
             string[] tagsOfScenario = new string[] {
                     "authentication",
                     "service",
-                    "positive"};
+                    "positive",
+                    "ignore"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a valid user on the database.", null, new string[] {
                         "authentication",
                         "service",
-                        "positive"});
+                        "positive",
+                        "ignore"});
 #line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

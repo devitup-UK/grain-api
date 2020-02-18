@@ -6,7 +6,7 @@
 	Background:
 	Given I have configured a connection string
 
-@authentication @service @positive
+@authentication @service @positive @ignore
 Scenario: Create a valid user on the database.
 	Given I prepare a RegisterModel parameter
 	And the prepared RegisterModel parameter has a "FirstName" parameter whose value is "<FirstName>"

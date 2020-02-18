@@ -4,7 +4,12 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{EFDD13DB-9C5E-4D34-B1A4-345DDC1862F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specification", "Specification\Specification.csproj", "{CD48E305-8230-4715-A818-E5A61408E6ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specification", "Specification\Specification.csproj", "{CD48E305-8230-4715-A818-E5A61408E6ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8B6D403E-F5CB-4475-8854-65D88298BD32}"
+	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

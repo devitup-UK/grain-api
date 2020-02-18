@@ -1,4 +1,5 @@
-﻿using DevItUp.Grain.API.Helpers;
+﻿using DevItUp.Grain.API.Entities;
+using DevItUp.Grain.API.Helpers;
 using DevItUp.Grain.API.Models.Users;
 using DevItUp.Grain.API.Models.Users.Responses;
 using DevItUp.Grain.API.Specification;
@@ -59,8 +60,29 @@ namespace DevItUp.Grain.API.Specification.ServiceTests.UserService
         [Then(@"the CreateResponse object has a User object parameter")]
         public void ThenTheCreateResponseObjectHasAUserObjectParameter()
         {
-            Assert.IsTrue(PropertyHelper.HasProperty(_userContext.Test_CreateResponse, "User", UserModel));
+            Assert.IsTrue(PropertyHelper.HasPropertyOfType(_userContext.Test_CreateResponse, "User", typeof(User)));
         }
+
+        [Then(@"the CreateResponse\.User object has a ""(.*)"" parameter whose value is ""(.*)""")]
+        public void ThenTheCreateResponse_UserObjectHasAParameterWhoseValueIs(string parameterName, string parameterValue)
+        {
+            Assert.IsTrue(PropertyHelper.HasPropertyWithValue(_userContext.Test_CreateResponse.User, parameterName, parameterValue));
+        }
+
+        [Then(@"the CreateResponse object has a Error object parameter whose value is null")]
+        public void ThenTheCreateResponseObjectHasAErrorObjectParameterWhoseValueIsNull()
+        {
+            Assert.IsTrue(PropertyHelper.HasPropertyOfTypeWithValue(_userContext.Test_CreateResponse, "Error", typeof(Error), null));
+        }
+
+        [Then(@"the database will contain a User record with the following data: ""(.*)""")]
+        public void ThenTheDatabaseWillContainAUserRecordWithTheFollowingData(string databaseRecord)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
+
 
     }
 }

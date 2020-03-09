@@ -56,4 +56,3 @@ C:\Users\thomas.alderson\GitHub\DevItUp\grain-api\API\obj\Debug\netcoreapp3.1\AP
 C:\Users\thomas.alderson\GitHub\DevItUp\grain-api\API\obj\Debug\netcoreapp3.1\API.dll
 C:\Users\thomas.alderson\GitHub\DevItUp\grain-api\API\obj\Debug\netcoreapp3.1\API.pdb
 C:\Users\thomas.alderson\GitHub\DevItUp\grain-api\API\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
-C:\Users\thomas.alderson\GitHub\DevItUp\grain-api\API\bin\Debug\netcoreapp3.1\appsettings.json

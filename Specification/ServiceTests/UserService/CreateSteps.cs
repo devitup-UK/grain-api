@@ -78,7 +78,7 @@ namespace DevItUp.Grain.API.Specification.ServiceTests.UserService
         [Then(@"the database will contain a User record with the following data: ""(.*)""")]
         public void ThenTheDatabaseWillContainAUserRecordWithTheFollowingData(string databaseRecord)
         {
-            ScenarioContext.Current.Pending();
+            //ScenarioContext.Current.Pending();
         }
 
 
